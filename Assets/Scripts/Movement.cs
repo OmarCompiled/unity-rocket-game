@@ -1,4 +1,5 @@
-using System.Linq;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,9 +15,13 @@ public class Movement : MonoBehaviour
     #pragma warning disable
     private Rigidbody rigidbody;
     #pragma warning restore
+    private Dictionary<string, AudioSource> audioSources;
     /* Components */
 
-    private float thrust;
+    private float thrustPower;
+    private float steerPower;
+
+    private bool isOnFloor;
 
     void OnEnable()
     {
@@ -27,9 +32,12 @@ public class Movement : MonoBehaviour
 
     void Start()
     {   
-        Physics.gravity = new Vector3(0, -4, 0);
+        AudioSource[] audioSourcesArray = GetComponents<AudioSource>();
+        audioSources = new Dictionary<string, AudioSource>();
+        audioSources.Add("Thrust", audioSourcesArray[0]);
         rigidbody = GetComponent<Rigidbody>();
 
+        Physics.gravity *= 0.5f;
         playerActions = InputSystem.actions.FindActionMap("Player");
         steerAction = playerActions.FindAction("Move");
         thrustAction = playerActions.FindAction("Jump");
@@ -38,7 +46,10 @@ public class Movement : MonoBehaviour
         thrustAction.Enable();
         // playerActions.Enable(); // alternatively; although not needed
 
-        thrust = 100.0f * Physics.gravity.magnitude * rigidbody.mass;
+        thrustPower = 100.0f * Physics.gravity.magnitude * rigidbody.mass;
+        steerPower = 100.0f;
+
+        isOnFloor = true;
     }
 
     void Update()
@@ -48,25 +59,33 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        ProcessThrust(Time.fixedDeltaTime);
-        ProcessSteering();
+        ProcessThrusting(Time.fixedDeltaTime);
+        ProcessSteering(Time.fixedDeltaTime);
     }
 
-    void ProcessSteering()
+    void ProcessSteering(float deltaTime)
     {
-        if (steerAction.IsPressed())
-        {
-            Vector2 steer = steerAction.ReadValue<Vector2>();
-            
-            rigidbody.AddTorque(Vector3.Cross(Vector3.up, steer) * 0.5f); // Crossing prevents rotating on X.
-        }
+        if(isOnFloor) return;
+
+        rigidbody.freezeRotation = true;
+
+        Vector2 steerInput = steerAction.ReadValue<Vector2>();
+        Vector3 steeringAxis = Vector3.Cross(Vector3.up, steerInput).normalized;
+        transform.Rotate(steerPower * deltaTime * steeringAxis); // Crossing prevents rotating on X.
+
+        rigidbody.freezeRotation = false;
     }
 
-    void ProcessThrust(float deltaTime)
+    void ProcessThrusting(float deltaTime)
     {
         if (thrustAction.IsPressed())
         {
-            rigidbody.AddRelativeForce(thrust * deltaTime * Vector3.up);
+            rigidbody.AddRelativeForce(thrustPower * deltaTime * Vector3.up);
+            if(!audioSources["Thrust"].isPlaying) audioSources["Thrust"].Play();
+        } 
+        else 
+        {
+            audioSources["Thrust"].Stop();
         }
     }
 
@@ -74,5 +93,21 @@ public class Movement : MonoBehaviour
     {
         steerAction.Disable();
         thrustAction.Disable();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Floor"))
+        {
+            isOnFloor = true;
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Floor"))
+        {
+            isOnFloor = false;
+        }
     }
 }
