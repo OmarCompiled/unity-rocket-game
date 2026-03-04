@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 9f59e4461485fac99881d7dc04bb49b4, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 93187235}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Floor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -564,7 +564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3983638975418255276, guid: e33198ae3fafdf8f799576744133d804, type: 3}
       propertyPath: m_TagString
-      value: Floor
+      value: Finish
       objectReference: {fileID: 0}
     - target: {fileID: 4324416779209448726, guid: e33198ae3fafdf8f799576744133d804, type: 3}
       propertyPath: m_LocalScale.x
@@ -802,14 +802,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5573586582260707579, guid: 4c519dc5b84424eae8be0abf2dff55de, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5573586582260707579, guid: 4c519dc5b84424eae8be0abf2dff55de, type: 3}
-      propertyPath: m_Constraints
-      value: 24
-      objectReference: {fileID: 0}
     - target: {fileID: 6770749787182055785, guid: 4c519dc5b84424eae8be0abf2dff55de, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18
