@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 3
   tags:
   - Floor
-  - Safe
   layers:
   - Default
   - TransparentFX
