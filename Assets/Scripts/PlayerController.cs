@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigidbody;
     #pragma warning restore
     private Dictionary<string, AudioSource> audioSources;
+    private ParticleSystem particleSystem;
     /* Components */
 
     private float thrustPower;
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
         audioSources.Add("Crash", audioSourcesArray[1]);
         audioSources.Add("Success", audioSourcesArray[2]);
         rigidbody = GetComponent<Rigidbody>();
+        particleSystem = GetComponentInChildren<ParticleSystem>();
+        particleSystem.gameObject.SetActive(false);
 
         playerActions = InputSystem.actions.FindActionMap("Player");
         steerAction = playerActions.FindAction("Move");
@@ -102,5 +105,11 @@ public class PlayerController : MonoBehaviour
         {
             audioSource.Stop();
         }
+    }
+
+    public
+    void EnableParticleEmmision()
+    {
+        particleSystem.gameObject.SetActive(true);
     }
 }

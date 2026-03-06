@@ -22,11 +22,11 @@ public class CollisionHandler : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Finish"))
         {
-            StartCoroutine(LoadNextLevel(2.0f));
+            StartCoroutine(LoadNextLevel(3.0f));
         }
         else
         {
-            StartCoroutine(ReloadCurrentLevel(2.0f));
+            StartCoroutine(ReloadCurrentLevel(3.0f));
         }
     }
 
@@ -36,6 +36,7 @@ public class CollisionHandler : MonoBehaviour
         player.enabled = false;
         player.StopAllAudio();
         player.PlayAudio("Crash");
+        player.EnableParticleEmmision();
         yield return new WaitForSeconds(waitTime);
         LoadScene(GameManager.Instance.SceneIndex);
     }
