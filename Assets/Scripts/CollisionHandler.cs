@@ -36,7 +36,8 @@ public class CollisionHandler : MonoBehaviour
         player.enabled = false;
         player.StopAllAudio();
         player.PlayAudio("Crash");
-        player.EnableParticleEmmision();
+        player.StopAllParticles();
+        player.EmmitParticles("Crash", true);
         yield return new WaitForSeconds(waitTime);
         LoadScene(GameManager.Instance.SceneIndex);
     }
