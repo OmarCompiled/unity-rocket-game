@@ -3,33 +3,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
-    public static GameManager Instance
-    {
-        get {return instance;}
-    }
+    public static GameManager Instance {get; private set;}
 
-    private static int sceneIndex;
-    public static int SceneIndex
+    public int SceneIndex {get; set;}
+   
+    void Awake()
     {
-        get{return sceneIndex;}
-        set{sceneIndex = value;}
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        if(instance != null || instance != this)
+        if(Instance != null && Instance != this)
         {
-            Destroy(this); // Destroy does NOT return.
+            Destroy(gameObject); // Destroy does NOT return.
             return;
         }
-        instance = this;
-        SceneIndex = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Instance = this;
+        Instance.SceneIndex = 0;
+        DontDestroyOnLoad(gameObject);
     }
 }

@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         audioSources = new Dictionary<string, AudioSource>();
         audioSources.Add("Thrust", audioSourcesArray[0]);
         audioSources.Add("Crash", audioSourcesArray[1]);
-        //audioSources.Add("Finish", audioSourcesArray[2]);
+        audioSources.Add("Success", audioSourcesArray[2]);
         rigidbody = GetComponent<Rigidbody>();
 
         playerActions = InputSystem.actions.FindActionMap("Player");
@@ -89,12 +89,14 @@ public class PlayerController : MonoBehaviour
         thrustAction.Disable();
     }
 
-    public void PlayAudio(string clipName)
+    public
+    void PlayAudio(string clipName)
     {
         if(!audioSources[clipName].isPlaying) audioSources[clipName].Play();
     }
 
-    public void StopAllAudio()
+    public
+    void StopAllAudio()
     {
         foreach(AudioSource audioSource in audioSources.Values)
         {

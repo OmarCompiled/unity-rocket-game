@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1848
     height: 986
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 498}
   m_MaxSize: {x: 10000, y: 10000}
@@ -601,7 +601,7 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: -29126
+      - m_Data: -87006
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs: []
@@ -629,7 +629,7 @@ MonoBehaviour:
     m_LockTracker:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
-  m_WindowGUID: 7f54a154397dcfc77a2f6b8cc1df0172
+  m_WindowGUID: df4fec13d217df30095ac821258e7f4d
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -753,14 +753,11 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52296
-    - m_Data: 52298
-    - m_Data: 52300
     - m_Data: 52302
     - m_Data: 52304
     - m_Data: 52306
-    - m_Data: 52308
-    - m_Data: 52666
+    - m_Data: 52672
+    - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -793,14 +790,11 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52296
-    - m_Data: 52298
-    - m_Data: 52300
     - m_Data: 52302
     - m_Data: 52304
     - m_Data: 52306
-    - m_Data: 52308
-    - m_Data: 52666
+    - m_Data: 52672
+    - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1519,7 +1513,7 @@ MonoBehaviour:
         overlayData: []
     m_OverlaysVisible: 1
     m_DynamicPanelBehavior: 0
-  m_WindowGUID: 4f132b0be38286a2e94c43559bb2c65f
+  m_WindowGUID: d2788d29248f44a7fb0719d076cbf466
   m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1

@@ -1,3 +1,3 @@
 # Rocket Boost
 
-#### This project was made following section 3 of gamedev.tv's Unity 3D game development course
+#### The assets used in this project are from gamedev.tv's Unity course

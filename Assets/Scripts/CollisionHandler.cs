@@ -26,30 +26,37 @@ public class CollisionHandler : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ReloadCurrentScene(2.0f));
+            StartCoroutine(ReloadCurrentLevel(2.0f));
         }
     }
 
-    IEnumerator ReloadCurrentScene(float waitTime)
+    IEnumerator ReloadCurrentLevel(float waitTime)
     {
+        if(!player.enabled) yield break;
         player.enabled = false;
         player.StopAllAudio();
         player.PlayAudio("Crash");
         yield return new WaitForSeconds(waitTime);
-        SceneManager.LoadScene(GameManager.SceneIndex);
+        LoadScene(GameManager.Instance.SceneIndex);
     }
 
     IEnumerator LoadNextLevel(float waitTime)
     {
+        if (!player.enabled) yield break;
         player.enabled = false;
         player.StopAllAudio();
-        //player.PlayAudio("Finish");
+        player.PlayAudio("Success");
         yield return new WaitForSeconds(waitTime);
-        if(++GameManager.SceneIndex == SceneManager.sceneCountInBuildSettings)
+        LoadScene(++GameManager.Instance.SceneIndex);
+    }
+
+    void LoadScene(int sceneIndex)
+    {
+        if (sceneIndex == SceneManager.sceneCountInBuildSettings)
         {
-            GameManager.SceneIndex = 0;
+            sceneIndex = 0;
         }
-        SceneManager.LoadScene(GameManager.SceneIndex);
+        SceneManager.LoadScene(sceneIndex);
     }
 
     void OnCollisionExit(Collision collision)
