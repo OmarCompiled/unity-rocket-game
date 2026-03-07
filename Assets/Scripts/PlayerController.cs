@@ -31,8 +31,13 @@ public class PlayerController : MonoBehaviour
         thrustAction?.Enable();
     }
 
+    void Awake()
+    {
+        GameManager.Player = this;
+    }
+
     void Start()
-    {   
+    {
         AudioSource[] audioSourcesArray = GetComponents<AudioSource>();
         ParticleSystem[] particleSystemsArray = GetComponentsInChildren<ParticleSystem>();
 
