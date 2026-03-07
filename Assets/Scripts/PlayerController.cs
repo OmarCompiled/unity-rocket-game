@@ -15,8 +15,29 @@ public class PlayerController : MonoBehaviour
     #pragma warning disable
     private Rigidbody rigidbody;
     #pragma warning restore
-    private Dictionary<string, AudioSource> audioSources;
-    private Dictionary<string, ParticleSystem> particleSystems;
+    private AudioSource[] audioSources;
+    private ParticleSystem[] particleSystems;
+
+    [SerializeField]
+    private AudioSource thrust_SFX;
+
+    [SerializeField]
+    private AudioSource crash_SFX;
+
+    [SerializeField]
+    private AudioSource success_SFX;
+
+    [SerializeField]
+    private ParticleSystem thrustParticles;
+
+    [SerializeField]
+    private ParticleSystem crashParticles;
+
+    [SerializeField]
+    private ParticleSystem rightThrustParticles;
+
+    [SerializeField]
+    private ParticleSystem leftThrustParticles;
     /* Components */
 
     private float thrustPower;
@@ -38,19 +59,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        AudioSource[] audioSourcesArray = GetComponents<AudioSource>();
-        ParticleSystem[] particleSystemsArray = GetComponentsInChildren<ParticleSystem>();
-
-        audioSources = new Dictionary<string, AudioSource>();
-        audioSources.Add("Thrust", audioSourcesArray[0]);
-        audioSources.Add("Crash", audioSourcesArray[1]);
-        audioSources.Add("Success", audioSourcesArray[2]);
-
-        particleSystems = new Dictionary<string, ParticleSystem>();
-        particleSystems.Add("Thrust", particleSystemsArray[0]);
-        particleSystems.Add("Crash", particleSystemsArray[1]);
-        particleSystems.Add("Left", particleSystemsArray[2]);
-        particleSystems.Add("Right", particleSystemsArray[3]);
+        audioSources = GetComponents<AudioSource>();
+        particleSystems = GetComponentsInChildren<ParticleSystem>();
 
         rigidbody = GetComponent<Rigidbody>();
 
@@ -86,15 +96,15 @@ public class PlayerController : MonoBehaviour
 
         if(steerInput.x > 0)
         {
-            EmmitParticles("Left", true);
+            EmmitLeftThrustParticles(true);
         } 
         else if(steerInput.x < 0)
         {
-            EmmitParticles("Right", true);
+            EmmitRightThrustParticles(true);
         } else
         {
-            EmmitParticles("Left", false);
-            EmmitParticles("Right", false);
+            EmmitLeftThrustParticles(false);
+            EmmitRightThrustParticles(false);
         }
     }
 
@@ -103,13 +113,13 @@ public class PlayerController : MonoBehaviour
         if (thrustAction.IsPressed())
         {
             rigidbody.AddRelativeForce(thrustPower * deltaTime * Vector3.up);
-            if(!audioSources["Thrust"].isPlaying) audioSources["Thrust"].Play();
-            EmmitParticles("Thrust", true);
+            PlayThrustSFX(true);
+            EmmitThrustParticles(true);
         } 
         else 
         {
-            audioSources["Thrust"].Stop();
-            EmmitParticles("Thrust", false);
+            PlayThrustSFX(false);
+            EmmitThrustParticles(false);
         }
     }
 
@@ -120,31 +130,67 @@ public class PlayerController : MonoBehaviour
     }
 
     public
-    void PlayAudio(string clipName)
+    void PlayThrustSFX(bool play)
     {
-        if(!audioSources[clipName].isPlaying) audioSources[clipName].Play();
+        if(!play) thrust_SFX.Stop();
+        else if(!thrust_SFX.isPlaying) thrust_SFX.Play();
+    }
+
+    public
+    void PlayCrashSFX(bool play)
+    {
+        if(!play) crash_SFX.Stop();
+        else if(!crash_SFX.isPlaying) crash_SFX.Play();
+    }
+
+    public
+    void PlaySuccessSFX(bool play)
+    {
+        if(!play) success_SFX.Stop();
+        else if(!success_SFX.isPlaying) success_SFX.Play();
     }
 
     public
     void StopAllAudio()
     {
-        foreach(AudioSource audioSource in audioSources.Values)
+        foreach(AudioSource audioSource in audioSources)
         {
             audioSource.Stop();
         }
     }
 
     public
-    void EmmitParticles(string particleSystem, bool emmit)
+    void EmmitThrustParticles(bool emmit)
     { 
-        if(emmit) particleSystems[particleSystem].Play();
-        else particleSystems[particleSystem].Stop();
+        if(emmit) thrustParticles.Play();
+        else thrustParticles.Stop();
+    }
+
+    public 
+    void EmmitCrashParticles(bool emmit)
+    {
+        if(emmit) crashParticles.Play();
+        else crashParticles.Stop();
+    }
+
+    public
+    void EmmitRightThrustParticles(bool emmit)
+    {
+        if(emmit) rightThrustParticles.Play();
+        else rightThrustParticles.Stop();
+    }
+
+    public
+    void EmmitLeftThrustParticles(bool emmit)
+    {
+        if(emmit) leftThrustParticles.Play();
+        else leftThrustParticles.Stop();
     }
 
     public
     void StopAllParticles()
     {
-        foreach(ParticleSystem particleSystem in particleSystems.Values)
+        foreach(ParticleSystem particleSystem in particleSystems)
         {
             particleSystem.Stop();
         }
