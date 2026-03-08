@@ -19,10 +19,13 @@ public class CollisionHandler : MonoBehaviour
         else if(collision.gameObject.CompareTag("Finish"))
         {
             StartCoroutine(GameManager.LoadNextLevel(3.0f));
+            GameManager.Player.isOnFloor = true;
+            GameManager.Player.finished = true;
         }
         else
         {
             StartCoroutine(GameManager.ReloadCurrentLevel(3.0f));
+            GameManager.Player.crashed = true;
         }
     }
 

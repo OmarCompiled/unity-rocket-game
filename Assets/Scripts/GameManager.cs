@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
     public static PlayerController Player {get; set;} // Vague naming but works well :)
-    public static int SceneIndex {get; set;}
     // primarily because I'm sure only one of each script exists on the Player instance
+    public static int SceneIndex {get; set;}
    
     void Awake()
     {
@@ -48,32 +48,31 @@ public class GameManager : MonoBehaviour
     public static
     IEnumerator ReloadCurrentLevel(float waitTime)
     {
-        if(!Player.enabled) yield break;
+        if(Player.crashed) yield break;
         Player.enabled = false;
         Player.StopAllAudio();
         Player.crashSFX.Play();
         Player.StopAllParticles();
         Player.crashParticles.Play();
         yield return new WaitForSeconds(waitTime);
-        LoadScene(GameManager.SceneIndex);
+        LoadScene(SceneIndex);
     }
 
     public static
     IEnumerator LoadNextLevel(float waitTime)
     {
-        if (!Player.enabled) yield break;
-        Player.enabled = false;
+        if(Player.finished) yield break;
         Player.StopAllAudio();
         Player.successSFX.Play();
         Player.StopAllParticles();
         yield return new WaitForSeconds(waitTime);
-        LoadScene(++GameManager.SceneIndex);
+        LoadScene(++SceneIndex);
     }
 
     public static
     void LoadScene(int sceneIndex)
     {
-        if (sceneIndex == SceneManager.sceneCountInBuildSettings)
+        if (sceneIndex >= SceneManager.sceneCountInBuildSettings)
         {
             sceneIndex = 0;
         }

@@ -42,6 +42,12 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isOnFloor;
 
+    [HideInInspector]
+    public bool crashed;
+
+    [HideInInspector]
+    public bool finished;
+
     void OnEnable()
     {
         steerAction?.Enable();
@@ -72,6 +78,8 @@ public class PlayerController : MonoBehaviour
         steerPower = 100.0f;
 
         isOnFloor = true;
+        crashed = false;
+        finished = false;
     }
 
     void FixedUpdate()
@@ -83,7 +91,6 @@ public class PlayerController : MonoBehaviour
     void ProcessSteering(float deltaTime)
     {
         if(isOnFloor) return;
-
         rigidbody.freezeRotation = true; // Reminds me of mutex locks :)
         Vector2 steerInput = steerAction.ReadValue<Vector2>();
         Vector3 steeringAxis = Vector3.Cross(Vector3.up, steerInput).normalized;
@@ -97,7 +104,8 @@ public class PlayerController : MonoBehaviour
         else if(steerInput.x < 0)
         {
             rightThrustParticles.Play();
-        } else
+        } 
+        else
         {
             rightThrustParticles.Stop();
             leftThrustParticles.Stop();
