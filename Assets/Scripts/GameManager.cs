@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public static PlayerController Player {get; set;} // Vague naming but works well :)
     // primarily because I'm sure only one of each script exists on the Player instance
     public static int SceneIndex {get; set;}
+    
+    [SerializeField]
+    GameObject globalVolume;
    
     void Awake()
     {
@@ -20,6 +23,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         SceneIndex = 0;
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(globalVolume);
     }
 
     void Update()
@@ -48,7 +52,7 @@ public class GameManager : MonoBehaviour
     public static
     IEnumerator ReloadCurrentLevel(float waitTime)
     {
-        if(Player.crashed) yield break;
+        if(Player.crashed || Player.finished) yield break;
         Player.enabled = false;
         Player.StopAllAudio();
         Player.crashSFX.Play();
@@ -61,7 +65,7 @@ public class GameManager : MonoBehaviour
     public static
     IEnumerator LoadNextLevel(float waitTime)
     {
-        if(Player.finished) yield break;
+        if(Player.finished || Player.crashed) yield break;
         Player.StopAllAudio();
         Player.successSFX.Play();
         Player.StopAllParticles();
