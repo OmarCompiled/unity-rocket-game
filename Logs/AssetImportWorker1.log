@@ -943,3 +943,56 @@ Memory consumption went from 168.7 MB to 162.7 MB.
 Total: 10.083894 ms (FindLiveObjects: 0.356479 ms CreateObjectMapping: 0.256727 ms MarkObjects: 7.061275 ms  DeleteObjects: 2.408958 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 943.935600 seconds.
+  path: Assets/Scripts/PlayerController.cs
+  artifactKey: Guid(73db95b6607645a52894fd1851a72f49) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scripts/PlayerController.cs using Guid(73db95b6607645a52894fd1851a72f49) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '75a17a35ec0be60f5cded12fac089de1') in 0.040462255 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000007 seconds.
+  path: Assets/Prefabs/Player.prefab
+  artifactKey: Guid(4c519dc5b84424eae8be0abf2dff55de) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Player.prefab using Guid(4c519dc5b84424eae8be0abf2dff55de) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '58443e8e77440ad32e668fb7d9ce16a6') in 0.036324453 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 80
+
+========================================================================
+Received Import Request.
+  Time since last request: 93.167577 seconds.
+  path: Assets/Prefabs/Spaceship/Fighter_06_Side_Frame_Blue.fbx
+  artifactKey: Guid(fb1c607d9386355be952b06b4b3dfd25) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Spaceship/Fighter_06_Side_Frame_Blue.fbx using Guid(fb1c607d9386355be952b06b4b3dfd25) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'b91958558702c32e096868fe7ff601e0') in 0.025546615 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.019475 seconds.
+  path: Assets/Prefabs/Spaceship/Fighter_02_Thruster.fbx
+  artifactKey: Guid(bc799700adb0cbbe5817e1bbed5652d7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Spaceship/Fighter_02_Thruster.fbx using Guid(bc799700adb0cbbe5817e1bbed5652d7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '72a421fc78ea885c3bf632ce1b32bec5') in 0.005669452 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000008 seconds.
+  path: Assets/Prefabs/Spaceship/Dropship_03_Thruster.fbx
+  artifactKey: Guid(1510117103f2e5697a9b3e39b1bdf7dc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/Spaceship/Dropship_03_Thruster.fbx using Guid(1510117103f2e5697a9b3e39b1bdf7dc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'a7de292cc16fbf864889492bc8af206e') in 0.01423889 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.035549 seconds.
+  path: Assets/Materials/Skybox_Mat.mat
+  artifactKey: Guid(4456a76d2373f9421a3dde9887b60057) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Materials/Skybox_Mat.mat using Guid(4456a76d2373f9421a3dde9887b60057) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3301000c17058121dc6841d37f3315ff') in 0.003030881 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+
+SDL leaked 2 allocations
