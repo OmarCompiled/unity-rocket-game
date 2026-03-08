@@ -19,19 +19,15 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem[] particleSystems;
 
     [SerializeField]
-    private AudioSource thrust_SFX;
+    private SFX thrustSFX;
 
-    [SerializeField]
-    private AudioSource crash_SFX;
-
-    [SerializeField]
-    private AudioSource success_SFX;
+    public SFX crashSFX;
+    public SFX successSFX;
 
     [SerializeField]
     private ParticleSystem thrustParticles;
 
-    [SerializeField]
-    private ParticleSystem crashParticles;
+    public ParticleSystem crashParticles;
 
     [SerializeField]
     private ParticleSystem rightThrustParticles;
@@ -96,15 +92,15 @@ public class PlayerController : MonoBehaviour
 
         if(steerInput.x > 0)
         {
-            EmmitLeftThrustParticles(true);
+            leftThrustParticles.Play();
         } 
         else if(steerInput.x < 0)
         {
-            EmmitRightThrustParticles(true);
+            rightThrustParticles.Play();
         } else
         {
-            EmmitLeftThrustParticles(false);
-            EmmitRightThrustParticles(false);
+            rightThrustParticles.Stop();
+            leftThrustParticles.Stop();
         }
     }
 
@@ -113,13 +109,13 @@ public class PlayerController : MonoBehaviour
         if (thrustAction.IsPressed())
         {
             rigidbody.AddRelativeForce(thrustPower * deltaTime * Vector3.up);
-            PlayThrustSFX(true);
-            EmmitThrustParticles(true);
+            thrustSFX.Play();
+            thrustParticles.Play();
         } 
         else 
         {
-            PlayThrustSFX(false);
-            EmmitThrustParticles(false);
+            thrustSFX.Stop();
+            thrustParticles.Stop();
         }
     }
 
@@ -130,61 +126,12 @@ public class PlayerController : MonoBehaviour
     }
 
     public
-    void PlayThrustSFX(bool play)
-    {
-        if(!play) thrust_SFX.Stop();
-        else if(!thrust_SFX.isPlaying) thrust_SFX.Play();
-    }
-
-    public
-    void PlayCrashSFX(bool play)
-    {
-        if(!play) crash_SFX.Stop();
-        else if(!crash_SFX.isPlaying) crash_SFX.Play();
-    }
-
-    public
-    void PlaySuccessSFX(bool play)
-    {
-        if(!play) success_SFX.Stop();
-        else if(!success_SFX.isPlaying) success_SFX.Play();
-    }
-
-    public
     void StopAllAudio()
     {
         foreach(AudioSource audioSource in audioSources)
         {
             audioSource.Stop();
         }
-    }
-
-    public
-    void EmmitThrustParticles(bool emmit)
-    { 
-        if(emmit) thrustParticles.Play();
-        else thrustParticles.Stop();
-    }
-
-    public 
-    void EmmitCrashParticles(bool emmit)
-    {
-        if(emmit) crashParticles.Play();
-        else crashParticles.Stop();
-    }
-
-    public
-    void EmmitRightThrustParticles(bool emmit)
-    {
-        if(emmit) rightThrustParticles.Play();
-        else rightThrustParticles.Stop();
-    }
-
-    public
-    void EmmitLeftThrustParticles(bool emmit)
-    {
-        if(emmit) leftThrustParticles.Play();
-        else leftThrustParticles.Stop();
     }
 
     public

@@ -51,9 +51,9 @@ public class GameManager : MonoBehaviour
         if(!Player.enabled) yield break;
         Player.enabled = false;
         Player.StopAllAudio();
-        Player.PlayCrashSFX(true);
+        Player.crashSFX.Play();
         Player.StopAllParticles();
-        Player.EmmitCrashParticles(true);
+        Player.crashParticles.Play();
         yield return new WaitForSeconds(waitTime);
         LoadScene(GameManager.SceneIndex);
     }
@@ -64,7 +64,8 @@ public class GameManager : MonoBehaviour
         if (!Player.enabled) yield break;
         Player.enabled = false;
         Player.StopAllAudio();
-        Player.PlaySuccessSFX(true);
+        Player.successSFX.Play();
+        Player.StopAllParticles();
         yield return new WaitForSeconds(waitTime);
         LoadScene(++GameManager.SceneIndex);
     }

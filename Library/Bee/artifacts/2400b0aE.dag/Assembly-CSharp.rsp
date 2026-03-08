@@ -482,6 +482,7 @@
 "Assets/Scripts/CollisionHandler.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/SFX.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 /deterministic

@@ -67,9 +67,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73db95b6607645a52894fd1851a72f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  thrust_SFX: {fileID: 7403049107494735758}
-  crash_SFX: {fileID: 2822805296324273161}
-  success_SFX: {fileID: 5108179065978765599}
+  thrustSFX:
+    audioSource: {fileID: 7403049107494735758}
+  crashSFX:
+    audioSource: {fileID: 2822805296324273161}
+  successSFX:
+    audioSource: {fileID: 5108179065978765599}
   thrustParticles: {fileID: 7740601537581968595}
   crashParticles: {fileID: 7581811055658948205}
   rightThrustParticles: {fileID: 1679883726129218769}
